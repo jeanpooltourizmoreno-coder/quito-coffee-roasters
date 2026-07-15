@@ -19,12 +19,6 @@ Proyecto final del curso **Ruta de la Empleabilidad** (Conquito).
 - **Formulario de contacto** con validación en tiempo real campo por campo.
 - Diseño **100% responsive** (móvil, tablet, escritorio), animaciones sutiles y soporte para `prefers-reduced-motion`.
 
-## 🛠️ Tecnologías
-
-- HTML5 semántico + atributos ARIA
-- CSS3 moderno: variables, Flexbox, Grid, media queries, animaciones
-- JavaScript ES6+: módulos (`import`/`export`), `const`/`let`, arrow functions, template literals, desestructuración, spread/rest, `map`/`filter`/`reduce`/`find`
-- `fetch()` con `async`/`await` y manejo de errores con `try/catch`
 
 ## 🌐 APIs consumidas
 
@@ -79,10 +73,7 @@ Este proyecto se desarrolló con ayuda de Claude (Anthropic) como asistente de p
 
 > Completá o ajustá esta lista con tus propios prompts reales si seguiste conversando con el asistente para modificar el proyecto.
 
-## 📝 Reflexión final
-
-> _Espacio para tu reflexión personal (≈200 palabras) sobre lo aprendido y cómo la IA aceleró tu desarrollo. Completala vos mismo/a antes de entregar — el formulario de entrega la pide como tuya._
 
 ## 👤 Autor/a
 
-**[Tu nombre completo]** — Ruta de la Empleabilidad, Conquito, 2026.
+**[jean pool touriz moreno]** — Ruta de la Empleabilidad, Conquito, 2026.

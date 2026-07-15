@@ -179,9 +179,18 @@ p { margin: 0; }
   position: relative;
   overflow: hidden;
   padding-block: 5rem 6rem;
-  background:
-    radial-gradient(60% 50% at 85% 10%, rgba(211, 160, 95, 0.14), transparent),
-    linear-gradient(180deg, var(--espresso-950), var(--espresso-800));
+
+  background-image:
+    linear-gradient(
+      rgba(20, 12, 8, 0.70),
+      rgba(20, 12, 8, 0.75)
+    ),
+    url("../images/hero-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .hero__steam {
@@ -210,7 +219,11 @@ p { margin: 0; }
   100% { opacity: 0; transform: translateY(-40px) scaleY(1.05); }
 }
 
-.hero__content { max-width: 640px; }
+.hero__content {
+    max-width: 640px;
+    position: relative;
+    z-index: 5;
+}
 .hero__eyebrow {
   font-family: var(--font-mono);
   text-transform: uppercase;
@@ -245,6 +258,9 @@ p { margin: 0; }
 }
 
 .hero__quote {
+  position: relative;
+z-index: 5;
+
   margin: 4rem auto 0;
   width: min(100% - 3rem, 640px);
   border-top: 1px dashed var(--cinnamon-600);
@@ -319,15 +335,43 @@ p { margin: 0; }
 .search-field input:focus { border-color: var(--caramel-400); }
 
 .filter-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-.filter-btn {
-  background: transparent;
-  border: 1px solid var(--cinnamon-600);
-  color: var(--cream-100);
-  padding: 0.5rem 1.1rem;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background var(--transition-base), color var(--transition-base);
+.filter-btn{
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid rgba(214,165,96,.6);
+    border-radius: 999px;
+    padding: .85rem 1.6rem;
+    cursor: pointer;
+    font-weight: 600;
+
+    transition:
+        background .35s ease,
+        color .35s ease,
+        transform .25s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
 }
+
+.filter-btn:hover{
+    background: linear-gradient(135deg,#d8a15f,#f4d19b);
+    color:#2b160d;
+
+    border-color:#f7d8a8;
+
+    transform: translateY(-4px) scale(1.05);
+
+    box-shadow:
+        0 10px 25px rgba(216,161,95,.45),
+        0 0 18px rgba(255,218,140,.35);
+}
+.filter-btn.active{
+    background: linear-gradient(135deg,#d8a15f,#e8b66e);
+    color:#2b160d;
+
+    box-shadow:
+        0 10px 30px rgba(216,161,95,.45);
+}
+
 .filter-btn[aria-pressed='true'] {
   background: var(--caramel-400);
   color: var(--espresso-950);

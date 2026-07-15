@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quito Coffee Roasters — Café de especialidad del Centro Histórico</title>
+  <meta name="description" content="Catálogo de cafés de especialidad, calculadora de envío y contacto directo con Quito Coffee Roasters." />
+
+  <!-- Tipografías: Fraunces (display, carácter editorial) + Work Sans (texto) + Space Mono (etiquetas/precios estilo sello de saco) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============================= HEADER ============================= -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="#inicio" class="logo">
+        <span class="logo__mark" aria-hidden="true">☕</span>
+        <span class="logo__text">Quito Coffee <em>Roasters</em></span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú de navegación">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="nav-menu" aria-label="Navegación principal">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#pedido">Mi pedido</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <!-- ============================= HERO ============================= -->
+    <section class="hero" aria-label="Presentación">
+      <div class="hero__steam" aria-hidden="true">
+        <svg viewBox="0 0 120 200" class="steam-svg">
+          <path class="steam-path steam-path--1" d="M20 200 C 40 160, 0 140, 20 100 C 40 60, 0 40, 20 0" />
+          <path class="steam-path steam-path--2" d="M60 200 C 80 160, 40 140, 60 100 C 80 60, 40 40, 60 0" />
+          <path class="steam-path steam-path--3" d="M100 200 C 120 160, 80 140, 100 100 C 120 60, 80 40, 100 0" />
+        </svg>
+      </div>
+
+      <div class="container hero__content">
+        <p class="hero__eyebrow">Centro Histórico de Quito · Tueste artesanal</p>
+        <h1 class="hero__title">
+          Café de especialidad,<br />
+          <em>recién tostado</em> para vos.
+        </h1>
+        <p class="hero__subtitle">
+          Explorá nuestro catálogo, armá tu pedido y calculá el envío a cualquier zona de Quito — todo desde acá, sin pasar por WhatsApp.
+        </p>
+
+        <div class="hero__meta">
+          <p id="weather-badge" class="hero__weather" role="status" aria-live="polite">Consultando clima de Quito…</p>
+        </div>
+
+        <a href="#catalogo" class="btn btn--primary">Ver catálogo de cafés</a>
+      </div>
+
+      <figure class="hero__quote" aria-live="polite">
+        <blockquote>
+          <p id="quote-text">Cargando frase del día…</p>
+        </blockquote>
+        <figcaption id="quote-author"></figcaption>
+      </figure>
+    </section>
+
+    <!-- ============================= CATÁLOGO ============================= -->
+    <section class="section" id="catalogo" aria-labelledby="catalogo-title" data-reveal>
+      <div class="container">
+        <p class="section__eyebrow">Nuestros lotes</p>
+        <h2 class="section__title" id="catalogo-title">Catálogo de cafés</h2>
+
+        <div class="catalog-controls">
+          <div class="search-field">
+            <label for="search-input" class="sr-only">Buscar café por nombre</label>
+            <input type="search" id="search-input" placeholder="Buscar por nombre… ej. Yirgacheffe" autocomplete="off" />
+          </div>
+          <div id="filter-bar" class="filter-bar" role="group" aria-label="Filtrar por origen"></div>
+        </div>
+
+        <p id="catalog-empty" class="empty-state" hidden>No encontramos cafés con esos filtros. Probá con otro origen o búsqueda.</p>
+        <div id="catalog-grid" class="catalog-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ============================= CALCULADORA / CARRITO ============================= -->
+    <section class="section section--dark" id="pedido" aria-labelledby="pedido-title" data-reveal>
+      <div class="container pedido-layout">
+        <div class="pedido-intro">
+          <p class="section__eyebrow">Calculadora de envío</p>
+          <h2 class="section__title" id="pedido-title">Tu pedido</h2>
+          <p>Elegí tu zona de entrega en Quito y mirá el total actualizarse al instante.</p>
+
+          <label for="zone-select" class="field-label">Zona de entrega</label>
+          <select id="zone-select" class="zone-select">
+            <option value="norte">Norte — $2.50</option>
+            <option value="centro" selected>Centro — $1.80</option>
+            <option value="sur">Sur — $3.00</option>
+            <option value="valles">Valles — $3.50</option>
+          </select>
+
+          <button type="button" id="currency-toggle" class="btn btn--ghost">Ver en EUR</button>
+        </div>
+
+        <div class="cart-card">
+          <h3 class="cart-card__title">
+            Carrito <span id="cart-count" class="cart-count">0</span>
+          </h3>
+
+          <p id="cart-empty" class="empty-state">Tu carrito está vacío. ¡Agregá algún café del catálogo!</p>
+          <ul id="cart-list" class="cart-list"></ul>
+
+          <dl class="cart-totals">
+            <div><dt>Subtotal</dt><dd id="cart-subtotal">$0.00</dd></div>
+            <div><dt>Envío</dt><dd id="cart-shipping">$0.00</dd></div>
+            <div class="cart-totals__grand"><dt>Total</dt><dd id="cart-total">$0.00</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= CONTACTO ============================= -->
+    <section class="section" id="contacto" aria-labelledby="contacto-title" data-reveal>
+      <div class="container contacto-layout">
+        <div>
+          <p class="section__eyebrow">Hablemos</p>
+          <h2 class="section__title" id="contacto-title">Escribinos</h2>
+          <p>¿Tenés una pregunta sobre un lote o querés un pedido especial? Contanos.</p>
+        </div>
+
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="form-field">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" required />
+            <p class="form-error" data-error-for="name"></p>
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+            <p class="form-error" data-error-for="email"></p>
+          </div>
+
+          <div class="form-field">
+            <label for="phone">Teléfono</label>
+            <input type="tel" id="phone" name="phone" required />
+            <p class="form-error" data-error-for="phone"></p>
+          </div>
+
+          <div class="form-field form-field--full">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <p class="form-error" data-error-for="message"></p>
+          </div>
+
+          <button type="submit" class="btn btn--primary">Enviar mensaje</button>
+          <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================= FOOTER ============================= -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div>
+        <p class="logo logo--footer"><span aria-hidden="true">☕</span> Quito Coffee Roasters</p>
+        <p>Centro Histórico de Quito, Ecuador</p>
+        <p>Lunes a sábado · 08:00 – 18:00</p>
+      </div>
+
+      <div class="site-footer__social" aria-label="Redes sociales">
+        <a href="#" aria-label="Instagram de Quito Coffee Roasters">Instagram</a>
+        <a href="#" aria-label="Facebook de Quito Coffee Roasters">Facebook</a>
+        <a href="#" aria-label="WhatsApp de Quito Coffee Roasters">WhatsApp</a>
+      </div>
+
+      <p class="site-footer__credits">
+        © <span id="current-year"></span> Quito Coffee Roasters. Proyecto académico — Ruta de la Empleabilidad, Conquito.
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
